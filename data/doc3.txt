@@ -1,0 +1,69 @@
+Work-for-Hire Acknowledgement, Confidentiality, and
+Noncompetition Agreement
+For and in consideration of new employment by Software Solutions
+Integrated, LLC (the “Company”), the signer (“Employee”) agrees as
+follows:
+I. Ownership of Developments and Rights
+All programming, documentation, software design, ideas, concepts,
+techniques, inventions, processes, and works of authorship, plus all
+associated or related copyrights, patents, trade secrets, and other
+intellectual property rights (collectively, the “Work Product”) developed or
+created by Employee while performing work for Company or its customers
+shall belong exclusively to Company and shall be considered works for
+hire of the Company under U.S. copyright law. To the extent Work
+Product may not be considered work for hire for Company, Employee
+agrees to assign, and automatically assigns to Company at the time of
+creation of the Work Product, without any requirement for further
+consideration, all right, title, and interest Employee has in the Work
+Product. Upon request by Company, Employee shall take such further
+actions, including without limitation signing and delivering instruments of
+conveyance and any other documents, that Company may require to give
+effect to this assignment.
+II. Adequacy of Compensation
+Employee’s normal salary is full payment for all Work Product, including
+without limitation programming, documentation, and software design,
+developed or created for Company or its customers by Employee during
+the period of Employee’s employment by Company, and Employee has no
+claim for royalties or other compensation, other than Employee’s normal
+salary, for such Work Product.
+III. Trade Secrets
+Employee acknowledges that Company considers all information of a
+competitively sensitive or proprietary nature, including without limitation
+software design, development, documentation, and other Work Product
+(collectively, the “Confidential Information”) to be trade secrets belonging
+to Company. Confidential Information does not include information that
+Employee can show (1) is generally available to the public, (2) has been
+released by Company or its customers generally without restrictions, (3)
+has been independently developed or acquired by Employee without
+reliance in any way on other protected information of Company or its
+customers, or (4) has been approved in writing by Company or its
+customers for use and disclosure by Employee without restriction. Both
+during the term of Employee’s employment by Company and after
+termination of that employment for any reason, Employee will not use,
+divulge, or discuss with third parties any Confidential Information learned,
+received, or otherwise acquired by Employee during such employment
+without prior written permission from Company.
+IV. Restrictions on Competition
+Because of Employee’s familiarity with Confidential Information pertaining
+to software for agricultural business management and agricultural
+accounting, Employee could cause grave harm to Company if Employee
+worked for a competitor of Company anywhere in the U.S. Hence, AFTER
+TERMINATION OF EMPLOYEE’S EMPLOYMENT, EMPLOYEE WILL
+NOT COMPETE WITH COMPANY FOR TWENTY-FOUR MONTHS BY
+ENGAGING IN THE DESIGN, DEVELOPMENT, OR DOCUMENTATION
+OF SOFTWARE FOR AGRICULTURAL BUSINESS MANAGEMENT OR
+AGRICULTURAL ACCOUNTING IN THE U.S. Employee will not perform
+such activities or directly manage or supervise them as a principal, agent,
+employee, consultant, contractor, co-venturer, or in any other capacity.
+V. Miscellaneous
+This Agreement merges and supersedes all prior and contemporaneous
+agreements, undertakings, covenants, and conditions (including
+specifically all prior confidentiality and noncompetition agreements
+Employee has entered), whether oral or written, express or implied,
+between Employee and Company to the extent they contradict or conflict
+with the provisions of this Agreement.
+Although Employee’s employment is contingent on the acceptance and
+observance of this Agreement, this Agreement shall not make Employee’s
+employment other than terminable at will at any time by Employee or
+Company in the sole discretion of either of them.
+____________________________ _________________________
