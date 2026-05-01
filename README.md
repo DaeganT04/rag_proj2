@@ -1,18 +1,120 @@
-Project Overview
-This project implements a Retrieval-Augmented Generation (RAG) system that allows a Large Language Model (LLM) to answer questions using a specific set of documents. Traditional LLMs rely only on their pre-trained knowledge and may not have access to private or recently updated information. This project solves that problem by retrieving relevant information from user-provided documents and using that information to generate answers. The assistant loads documents, splits them into smaller chunks, converts those chunks into embeddings, stores them in a vector database, retrieves the most relevant sections for a user query, and generates an answer using an LLM. The system is designed so the model answers only using the retrieved document context, preventing hallucinated responses.
-Use Case
-The assistant functions as a document-based knowledge system that can answer questions about a collection of internal documents. This type of system could be used for a company HR policy assistant, an IT helpdesk documentation bot, an internal knowledge base assistant, or a technical manual search tool. A user asks a question, the system searches the stored document content, retrieves the most relevant sections, and then generates an answer using that information.
-System Architecture
-The system follows the standard Retrieval-Augmented Generation pipeline. First, documents are loaded from the data folder and their text content is extracted. The text is then split into smaller overlapping chunks so that each piece of information remains meaningful while still being small enough for accurate retrieval. These chunks are converted into vector embeddings using the Sentence Transformers model all-MiniLM-L6-v2. Each embedding, along with its original text and metadata such as source file name and chunk ID, is stored in a ChromaDB vector database. When a user asks a question, the query is also converted into an embedding and compared with the stored vectors to find the most semantically similar chunks. The top results are retrieved and passed into the language model as context. The LLM then generates an answer based strictly on the retrieved text.
-Chunking Strategy
-The documents are split into chunks of approximately 400 characters with an overlap of 100 characters between adjacent chunks. This approach ensures that each chunk contains enough context to be meaningful while still allowing precise retrieval of information. The overlap helps preserve context so that important information near the boundary of a chunk is not lost when the document is divided.
-Vector Database and Retrieval
-The project uses ChromaDB as the vector database because it provides efficient similarity search and persistent local storage. Each chunk’s embedding is stored together with metadata including the source document and chunk number. When a user query is received, the query is embedded using the same embedding model and compared against the stored vectors. The system retrieves the top three most relevant chunks, which are then used as context for the language model.
-LLM Integration and Prompting
-The retrieved chunks are provided to the LLM (Llama3 running locally through Ollama) along with the user’s question. A strict prompt instructs the model to answer using only the provided context and to respond that it does not know if the answer cannot be found in the retrieved text. This design prevents the model from generating information outside of the supplied documents and ensures the response remains grounded in the source material.
-Running the Project
-To run the project, first install the required dependencies using pip install -r requirements.txt. Next, install Ollama and download the Llama3 model using ollama pull llama3. After the dependencies are installed, run python ingest.py to load the documents, create chunks, generate embeddings, and build the vector database. Once the database has been created, run python main.py to start the command-line interface. The user can then enter questions about the documents, and the assistant will retrieve relevant chunks and generate an answer.
-Project Structure
-The project is organized into several Python scripts. The ingest.py file handles document ingestion, chunking, and building the vector database. The query.py file performs similarity retrieval and interacts with the LLM to generate answers. The main.py file provides a simple command-line interface for interacting with the assistant. The data folder contains the documents used to build the knowledge base, and the vector_db folder stores the persistent ChromaDB database.
-Dependencies
-The project uses several Python libraries including ChromaDB for the vector database, pypdf for extracting text from PDF files, Sentence Transformers and Torch for generating embeddings, and Ollama for running the Llama3 language model locally.
+## Project Overview
+
+This project implements a Retrieval-Augmented Generation (RAG) system that enables a Large Language Model (LLM) to answer questions using a specific set of user-provided documents. Traditional LLMs rely solely on pre-trained knowledge and may lack access to private, domain-specific, or recently updated information. This system addresses that limitation by retrieving relevant information from local documents and using that information to generate grounded responses.
+
+The assistant follows a full RAG pipeline: it loads documents, splits them into smaller chunks, converts those chunks into vector embeddings, stores them in a vector database, retrieves the most relevant sections based on a user query, and generates an answer using an LLM. The system is designed to ensure that the model answers strictly using the retrieved document context, reducing the risk of hallucinated or unsupported responses.
+
+In Project 2, the system has been refactored to improve modularity, maintainability, and testability by applying core software design principles (SOLID), introducing a more structured architecture, and adding comprehensive testing.
+
+---
+
+## Use Case
+
+The assistant functions as a document-based knowledge system capable of answering questions about a collection of internal documents. This type of system can be applied in several real-world scenarios, including:
+
+- Company HR policy assistants  
+- IT helpdesk documentation systems  
+- Internal knowledge base tools  
+- Technical manual search assistants  
+
+A user submits a question, the system retrieves the most relevant document sections, and the LLM generates an answer grounded in that retrieved information.
+
+---
+
+## System Architecture
+
+The system follows the standard Retrieval-Augmented Generation pipeline:
+
+1. **Document Ingestion**
+   - Documents are loaded from the `data/` folder
+   - Text is extracted from `.txt` and `.pdf` files
+
+2. **Chunking**
+   - Documents are split into smaller overlapping chunks to preserve context and improve retrieval accuracy
+
+3. **Embedding**
+   - Each chunk is converted into a vector embedding using the Sentence Transformers model (`all-MiniLM-L6-v2`)
+
+4. **Storage**
+   - Embeddings, text, and metadata are stored in a ChromaDB vector database
+
+5. **Query Processing**
+   - The user’s question is converted into an embedding
+   - Similarity search is performed against stored embeddings
+
+6. **Retrieval**
+   - The most relevant chunks are retrieved
+
+7. **Response Generation**
+   - Retrieved chunks are passed to the LLM (Llama3 via Ollama)
+   - The model generates an answer using only the provided context
+
+---
+
+## Chunking Strategy
+
+Documents are split into chunks of approximately 400 characters with an overlap of 100 characters between adjacent chunks. This approach ensures that:
+
+- Each chunk contains enough context to be meaningful  
+- Retrieval remains precise and relevant  
+- Important information near chunk boundaries is preserved  
+
+---
+
+## Vector Database and Retrieval
+
+The system uses **ChromaDB** as the vector database due to its efficient similarity search and support for persistent local storage. Each chunk’s embedding is stored alongside metadata, including:
+
+- Source file name  
+- Chunk ID  
+- Chunk size  
+
+When a user query is received, it is embedded using the same model and compared to stored vectors. The system retrieves the top three most relevant chunks, which are then used as context for answer generation.
+
+---
+
+## LLM Integration and Prompting
+
+The retrieved chunks are passed to the LLM (Llama3 running locally via Ollama) along with the user’s question. A carefully designed prompt ensures that:
+
+- The model answers **only using the provided context**  
+- If the answer is not found, it responds accordingly  
+- The response remains concise and accurate  
+- Sources are cited when applicable  
+
+This approach significantly reduces hallucination and ensures responses remain grounded in the document data.
+
+---
+
+## Running the Project
+
+1. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+
+2. Run ollama
+
+In new terminal run 
+ollama serve 
+
+then ollama pull llama3
+
+3. Running the project
+
+In original terminal start he vector database
+python ingest.py
+
+then run the program 
+python main.py
+
+## Docker Usage
+
+Build the Docker image:
+
+```bash
+docker build -t rag-app .
+
+Ollama serve 
+
+docker run -it -e OLLAMA_HOST=http://host.docker.internal:11434 rag-app
